@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Mining Blog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            line-height: 1.5;
+        }
+
+        header {
+            background-color: #6d9bc3;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        #author {
+            display: flex;
+            align-items: center;
+        }
+
+        #profile-pic {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+
+        main {
+            max-width: 100%; /* Set the maximum width to 100% to cover the entire viewport */
+            margin: 100px auto 20px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        article {
+            margin-bottom: 20px;
+            
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        p {
+            color: #555;
+        }
+
+        img {
+            max-width: 600px; /* Set your preferred maximum width */
+            height: auto;
+            margin-bottom: 10px;
+            display: block; /* To remove extra space below inline images */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #6d9bc3;
+            color: #fff;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer a {
+            color: #fff;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: #fff;
+            margin: 0 10px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Flower Classification on TPU</h1>
+        <div id="author">
+            <img id="profile-pic" src="https://placekitten.com/80/80" alt="Author's Profile Picture">
+            <p>Author: Arpitha </p>
+        </div>
+
+        <nav>
+            <a href="#introduction">Introduction</a>
+            <a href="#loading">Loading Dataset</a>
+            <a href="#exploring">Exploration</a>
+            <a href="#visualization">Visualizations</a>
+            <a href="#modeling">Modeling</a>
+        </nav>
+    </header>
+
+    <main>
+        <article id="introduction">
+            <h2>Introduction to Project</h2>
+            <p>Welcome to an exciting journey into the world of deep learning and flower classification using Tensor Processing Units (TPUs)! In this project, we'll delve into the fascinating realm of neural networks, leveraging the power of TPUs to build an efficient and accurate flower image classifier. Classifying flowers might seem like a simple task for us humans, but teaching a machine to recognize and distinguish between different floral species involves complex computations and sophisticated algorithms. To tackle this challenge, we'll be harnessing the incredible computational capabilities of TPUs. Tensor Processing Units are specialized hardware accelerators designed by Google to handle the intense computations required for machine learning tasks.
+
+            By utilizing TPUs, we can significantly speed up the training process of our neural network, making our flower classifier not only accurate but also efficient. Throughout this interactive guide, we'll cover every step of the process, from setting up the development environment in Kaggle to experimenting with various neural network architectures. The Classification task needs the following key libraries offered by the Python programming language.
+
+            </p>
+
+        </article>
+
+        <article id="loading">
+            <h2>Loading the Flower Dataset</h2>
+            <img src="images/Dataset_loading.PNG" alt="Image">
+            <p>The project dataset is provided as an open-source challenge but to use it in this project we have to use KaggleAPI, therefore requiring setting up a Token-based Authentication key that represented that we have accepted the challenge. Without the secret key, one cannot be able to use the KaggleAPI either.</p>
+        </article>
+
+        <article id="exploring">
+            <h2>Exploring the Dataset</h2>
+            <img src="images/dataset_info.PNG" alt="Image">
+            <p>Exploring the flower dataset was a crucial step in the data mining project. It served important purposes that contributed to the overall success of the project:
+                <li><b>Understanding the Data Structure:</b> Exploring the dataset helped in gaining a fundamental understanding of the structure and format of the data.</li>
+                <li><b>Label Distribution:</b> For the classification task, exploring the distribution of labels (flower classes in this case) was considered to be essential.</li>
+            <p>From the above Output:
+                <b>Training Images: 12,753:</b>These are the images that will be used to train a machine learning model. During the training phase, the model learns patterns and relationships in the data to make predictions. The training dataset typically includes labeled examples, meaning each image is associated with a corresponding label or category (e.g., types of flowers in a flower classification task).<br><br>
+
+                <b>Validation Images: 3,712:</b>This subset of the dataset is reserved for validation purposes. After training the model on the training images, it needs to be evaluated on data it has never seen before to assess its generalization performance. The validation dataset helps in tuning hyperparameters, preventing overfitting, and making adjustments to the model architecture.
+            </p>
+
+                <img src="images/datashapes.PNG" alt="Shapes">
+
+                    <p> From the above, the shapes represent the dimensions of the training data batches. Each line corresponds to a batch of training data. The format is (batch_size, height, width, channels), where:
+
+                            <li>batch_size: The number of examples (images) in each batch.</li>
+                            <li>height: The height of each image.</li>
+                            <li>width: The width of each image.</li>
+                            <li>channels: The number of color channels in each image (e.g., 3 for RGB images).</li>
+                    </p>
+            </p>
+        </article>
+
+        <article id="visualization">
+            <h2>Flower Visualization</h2>
+            <img src="images/flower_visualization.PNG" alt="Flowers">            
+        </article>
+
+        <article id="modeling">
+            <h2>Modeling</h2>
+            <img src="images/model.PNG" alt="Modeling">
+            <p>This task used a <b>Convolutional Neural Network (CNN)</b> model for the image classification.Its architecture is as follows:
+
+            <li><b>Input Layer:</b> The model takes as input images with a shape of (224, 224, 3), where 224 is the height and width, and 3 represents the three color channels (RGB). This input shape is common in image classification tasks.</li>
+
+            <li><b>Convolutional Layers:</b> Three convolutional layers (Conv2D) are used for feature extraction. Each convolutional layer is followed by a max-pooling layer (MaxPooling2D). The first convolutional layer has 32 filters, the second has 64 filters, and the third has 128 filters. The filters learn hierarchical features from the input images.</li>
+
+            <li><b>Activation Function:</b> The rectified linear unit (ReLU) activation function is used after each convolutional layer. ReLU introduces non-linearity, allowing the model to learn complex patterns in the data.</li>
+
+            <li><b>Max-Pooling Layers:</b> Max-pooling layers are inserted after each convolutional layer to downsample the spatial dimensions of the feature maps, reducing computation and increasing the receptive field.</li>
+
+            <li><b>Flatten Layer:</b> After the convolutional layers, a Flatten layer is added. It transforms the 3D tensor output from the convolutional layers into a 1D tensor, preparing it for the fully connected layers.</li>
+
+            <li><b>Fully Connected (Dense) Layers:</b> Two fully connected layers (Dense) follow the flattened representation. The first dense layer has 128 neurons with the ReLU activation function, introducing non-linearity to the learned features. The final dense layer has a number of neurons equal to the number of classes in the classification task (len(CLASSES)). It uses the softmax activation function, which is common in multi-class classification tasks. The softmax function outputs probabilities for each class, and the class with the highest probability is predicted as the final class.</li>
+
+            <li><b>Output Layer:</b> The output layer has as many neurons as there are classes, and it uses the softmax activation function. This architecture suggests that the model is designed for a multi-class classification task.</li>
+
+            <li><b>Model Compilation:</b> The model is compiled using the Adam optimizer, a popular optimization algorithm for training neural networks.The loss function used is 'sparse_categorical_crossentropy', which is suitable for multi-class classification tasks with integer-encoded class labels. The accuracy metric is used to monitor the model's performance during training.</li>
+
+            </p>
+            
+            <p>The model training seemed to take too long while executing and this required reducing the number of epochs. With powerful machines, it will be great to increase the number of epochs.</p>
+            <img src="images/model_training.PNG" alt="epochs">
+
+            <p>Plotting the training history was also considered to display the difference between the training accuracy and validation accuracy.</p>
+            <img src="images/accuracy_results.PNG" alt="accuracy">
+            <p>From the results obtained above, the validation accuracy tends to decrease slightly as the epochs increase. On the other hand, the training accuracy rises upon increasing the number of epochs. This means that, if one needs to increase the training accuracy altering the epoch numbers will be a crucial task.</p>
+            
+        </article>
+
+        <article>
+            <h2>References</h2>
+            <p>
+
+            tpu-getting-started,Alexis Cook, Phil Culliton, Ryan Holbrook,Petals to the <a href="https://www.kaggle.com/competitions/tpu-getting-started">Metal - Flower Classification on TPU, Kaggle</a> <br><br>
+
+            Alzubaidi, Zhang, Humaidi,Al-Dujaili, Duan, Y., Al-Shamma, Santamaría, Fadhel, Al-Amidie, and Farhan, 2021. Review of deep learning: Concepts, CNN architectures, challenges, applications, future directions. Journal of big Data, 8, pp.1-74.
+            </p>
+            
+        </article>
+
+
+
+
+    </main>
+
+    <footer>
+        &copy; 2023 My Blog | <a href="https://github.com" target="_blank">GitHub</a> | <a href="https://kaggle.com" target="_blank">Kaggle</a>
+    </footer>
+</body>
+</html>
